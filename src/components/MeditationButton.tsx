@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Meditation } from 'lucide-react';
+import { Brain } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const MeditationButton = () => {
@@ -80,7 +80,7 @@ const MeditationButton = () => {
         </div>
         
         <div className="relative z-10 text-center">
-          <Meditation size={48} className="mx-auto text-white mb-2" />
+          <Brain size={48} className="mx-auto text-white mb-2" />
           <span className="text-white font-medium text-xl tracking-wide block">
             {isBreathing 
               ? animationState === 'inhale'
