@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from "@/components/ui/button";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,14 +31,26 @@ const NavBar = () => {
         </a>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           <a href="#features" className="nav-link text-muted-foreground hover:text-foreground">Features</a>
           <a href="#testimonials" className="nav-link text-muted-foreground hover:text-foreground">Testimonials</a>
           <a href="#about" className="nav-link text-muted-foreground hover:text-foreground">About</a>
           <a href="#contact" className="nav-link text-muted-foreground hover:text-foreground">Contact</a>
-          <a href="/signup" className="px-5 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition-all shadow-md hover:shadow-lg">
-            Get Started
-          </a>
+          
+          {/* Auth Buttons */}
+          <div className="flex items-center gap-3 ml-2">
+            <Button 
+              variant="outline" 
+              className="px-5 py-2 border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 rounded-full transition-all"
+            >
+              Sign In
+            </Button>
+            <Button 
+              className="px-5 py-2 bg-primary text-white rounded-full hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
+            >
+              Sign Up
+            </Button>
+          </div>
         </nav>
         
         {/* Mobile Menu Button */}
@@ -58,9 +71,23 @@ const NavBar = () => {
             <a href="#testimonials" className="text-foreground py-2 px-4 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
             <a href="#about" className="text-foreground py-2 px-4 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>About</a>
             <a href="#contact" className="text-foreground py-2 px-4 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-            <a href="/signup" className="py-2 px-4 bg-primary text-white rounded-md hover:bg-primary/90 transition-all" onClick={() => setMobileMenuOpen(false)}>
-              Get Started
-            </a>
+            
+            {/* Mobile Auth Buttons */}
+            <div className="flex flex-col gap-2 pt-2">
+              <Button 
+                variant="outline" 
+                className="w-full py-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sign In
+              </Button>
+              <Button 
+                className="w-full py-2 bg-primary text-white rounded-md hover:bg-primary/90"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sign Up
+              </Button>
+            </div>
           </nav>
         </div>
       )}
