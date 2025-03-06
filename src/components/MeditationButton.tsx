@@ -54,18 +54,29 @@ const MeditationButton = () => {
 
   return (
     <div className="relative flex flex-col items-center">
+      <div className={cn(
+        "absolute -inset-8 bg-gradient-to-r from-mindflow-lavender/30 via-mindflow-sky/30 to-mindflow-lavender/30 rounded-full blur-xl opacity-0 transition-opacity duration-1000",
+        isBreathing ? "opacity-70 animate-pulse-soft" : "opacity-0"
+      )} />
+
       <button
         onClick={isBreathing ? stopBreathing : startBreathing}
         className={cn(
           "relative w-64 h-64 rounded-full overflow-hidden transition-all duration-500 ease-in-out group",
-          "bg-gradient-to-br from-mindflow-lavender/90 to-mindflow-sky/70 hover:from-mindflow-lavender hover:to-mindflow-sky",
+          "bg-gradient-to-br from-mindflow-lavender to-mindflow-sky hover:from-mindflow-lavender/90 hover:to-mindflow-sky/90",
           "flex items-center justify-center shadow-xl",
-          isBreathing && "scale-105",
+          isBreathing && "scale-105 shadow-mindflow-lavender/30",
           animationState === 'inhale' && "animate-scale-in",
           animationState === 'exhale' && "animate-scale-out"
         )}
         aria-label="Start meditation"
       >
+        {/* Pulsating ring effect */}
+        <div className={cn(
+          "absolute inset-0 rounded-full border-4 border-white/20 scale-100 opacity-0",
+          isBreathing && !["inhale", "exhale"].includes(animationState) && "animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"
+        )} />
+        
         <div className={cn(
           "absolute inset-4 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center",
           "transition-all duration-500",
@@ -80,7 +91,10 @@ const MeditationButton = () => {
         </div>
         
         <div className="relative z-10 text-center">
-          <Brain size={48} className="mx-auto text-white mb-2" />
+          <Brain size={48} className={cn(
+            "mx-auto text-white mb-2",
+            isBreathing && "animate-pulse-soft"
+          )} />
           <span className="text-white font-medium text-xl tracking-wide block">
             {isBreathing 
               ? animationState === 'inhale'
